@@ -1,0 +1,46 @@
+﻿@page "/Site"
+
+@inherits SiteBase
+@using TwoPhaseCommit.Data
+
+
+
+<h3> Send New Changes to All Node From Here</h3>
+<div>
+    <form>
+        <label>Enter the Amount you want to send to all Node:</label>
+        <input type="number" placeholder="Number Only" @bind-value="@entity.Balance"/>
+
+        <input type="submit" class="btn-primary" onclick="@SendChangesToAllNode(entity)" />
+    </form>
+    <div>
+        <hr />
+       <center><h3>Pervious Changes form Site </h3></center> 
+        @if (Temporaries != null)
+        {
+                <table class="table">
+                    <thead>
+                    <tr>
+                         <th>Id</th>
+                         <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Temporaries)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>@item.ChangeBalance</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+                 <p><em>Loading...</em></p>
+        }
+    </div>
+</div>

@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<center><h3>Two Phase Commit </h3></center>
+<p>
+    In a distributed computing system, a two-phase commit protocol can be used to ensure that a transaction is committed atomically across multiple systems.</p>
+    <p>The steps for the commit phase of a 2PC with a coordinator role are as follows:</p>
+
+
+1-The coordinator sends a "prepare" message to all participating systems, asking them to prepare to commit the transaction.
+<br />
+
+2-Each participating system checks if it is ready to commit the transaction, and sends a response message to the coordinator indicating its readiness.
+<br />
+
+3-If all participating systems are ready to commit the transaction, the coordinator sends a "commit" message to all participating systems, instructing them to commit the transaction.
+<br />
+
+5-Each participating system applies the changes made by the transaction to its local database.
+<br />
+
+6-The coordinator sends a "complete" message to all participating systems, indicating that the transaction has been successfully committed.
+<br />
+
+7-If any participating system is not ready to commit the transaction, or if there is a failure at any step in the process, the coordinator can send a "rollback" message to all participating 
+<br />
+systems, instructing them to undo any changes made by the transaction.This ensures that the transaction is either committed atomically across all participating systems, or is completely rolled back without any partial updates.
+
+<hr />

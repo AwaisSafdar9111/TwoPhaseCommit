@@ -1,0 +1,96 @@
+﻿@page "/fetchdata"
+
+@inherits FetchDataBase
+
+@using TwoPhaseCommit.Data
+
+<h1> Two Phase Commit Demostartion</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (twoPhaseEntity == null)
+{
+        <p><em>Loading...</em></p>
+}
+else
+{
+        <h3>Node One Details Acc.No and Current Balance of that Node</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                     <th>AccountNo</th>
+                     <th>Balance</th>
+                     <th>Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in twoPhaseEntity)
+            {
+                if (item.AccountNumber == "AccountNo1")
+                {
+                                                        <tr>
+                                                            <td>@item.AccountNumber</td>
+                                                             <td>@item.Balance</td>
+                                                             <td>
+                            @if (@item.TemChanges != 0)
+                            {
+                                                                <button class="btn-info" @onclick="()=>SaveTransection(item)">Ready</button>
+                                                                <button class="btn-danger" @onclick="Abort">Abort</button>
+                            }
+
+                                    </td>
+                                                          </tr> 
+                }
+
+            }
+            </tbody>
+
+        </table>
+
+
+            <h3>Node Two Detail Acc.No and Current Balance of that Node</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                         <th>AccountNo</th>
+                         <th>Balance</th>
+                         <th>Changes</th>
+                    </tr>
+                </thead>
+                <tbody>
+            @foreach (var item in twoPhaseEntity)
+            {
+                if (item.AccountNumber == "AccountNo2")
+                {
+                                            <tr>
+                                                <td>@item.AccountNumber</td>
+                                                 <td>@item.Balance</td>
+                                                 <td>
+                            @if (@item.TemChanges != 0)
+                            {
+                                                                <button class="btn-info" @onclick="()=>SaveTransection(item)">Ready</button>
+                                <button class="btn-danger" @onclick="Abort">Abort</button>
+                            }
+
+                        </td>
+                                              </tr> 
+                }
+
+            }
+                </tbody>
+
+            </table>
+
+
+            <label>Current Transection Status: </label>
+       
+    if (String.IsNullOrEmpty(Transectionstatus))
+    {
+                            <label>No Transections Yet !</label>
+    }
+    else
+    {
+                            <label>@Transectionstatus</label>
+    }
+}
+

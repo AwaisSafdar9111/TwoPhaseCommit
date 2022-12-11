@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\awais\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\awais\\.nuget\\packages"
+    ]
+  }
+}
